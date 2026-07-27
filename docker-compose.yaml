@@ -1,0 +1,20 @@
+services:
+  api:
+    build: ./
+    container_name: anomalies
+    env_file:
+      - .env
+    ports:
+      - "3316:3000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./src:/app/src
+    
+  mongo:
+    image: mongo:8
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
